@@ -1,27 +1,14 @@
 <?php
 define("IN_CODE", 1);
 include ("dbconfig.php");
+include ("game_file.php");
 $cookie_name = "kean_negotiation";
 
-function checkCookie($cookie_name)
-{
-    if (! isset($_COOKIE[$cookie_name]))
-    {
-        $info=0;
-    }
-    else
-    {
-        $info=$_COOKIE[$cookie_name];
-    }
-    return $info;
-}
-
-$info=checkCookie($cookie_name);
-if($info==0)
+$info = checkCookie($cookie_name);
+if ($info == 0)
     echo "No information saved";
-else 
-{
-    $cookie=explode(",",$info);
+else {
+    $cookie = explode(",", $info);
 }
 ?>
 
@@ -36,8 +23,8 @@ else
 	<br>
 	<b>Please enter your partner's information</b>
 	<form action="init2.php" method="post">
-		<input type="number" name="employment"> 
-		<input type="submit" value="Submit">
+		<input type="number" name="employment"> <input type="submit"
+			value="Submit">
 	</form>
 </body>
 </html>
