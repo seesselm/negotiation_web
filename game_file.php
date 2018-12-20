@@ -1,4 +1,9 @@
 <?php
+/*
+ * Handles game.php display function calls.
+ * Each print takes the input of current val/pts/order/table as well as the information from employee/employer config
+ * getI finds out the current order
+ */
 include ("game_sql.php");
 
 function printSalary($current, $pts, $in, $table)
@@ -16,10 +21,7 @@ function printSalary($current, $pts, $in, $table)
         echo "<input type='hidden' name='i' value='$in' />";
         echo "<select name='select'>";
         foreach ($salary as $value) {
-            // echo $value.'<br>';
             $val = explode("|", $value);
-            // echo $val[0].'<br>';
-            // echo $val[1].'<br>';
 
             echo "<option value='$value'>$val[0]($val[1])</option>";
         }
@@ -34,7 +36,6 @@ function printVacation($current, $pts, $in, $table)
 {
     include ("employee_config.php");
     include ("employer_config.php");
-    // echo "i is:".$i;
     if ($current == NULL) {
         if ($table == "employee")
             $vacation = $vac_ee;
@@ -45,11 +46,7 @@ function printVacation($current, $pts, $in, $table)
         echo "<input type='hidden' name='i' value='$in' />";
         echo "<select name='select'>";
         foreach ($vacation as $value) {
-            // echo $value.'<br>';
             $val = explode("|", $value);
-            // echo $val[0].'<br>';
-            // echo $val[1].'<br>';
-
             echo "<option value='$value'>$val[0]($val[1])</option>";
         }
         echo "<input type='submit' value='submit'/>";
@@ -63,7 +60,6 @@ function printAnnual($current, $pts, $in, $table)
 {
     include ("employee_config.php");
     include ("employer_config.php");
-    // echo "i is:".$i;
     if ($current == NULL) {
         if ($table == "employee")
             $annual = $ann_ee;
@@ -74,10 +70,7 @@ function printAnnual($current, $pts, $in, $table)
         echo "<input type='hidden' name='i' value='$in' />";
         echo "<select name='select'>";
         foreach ($annual as $value) {
-            // echo $value.'<br>';
             $val = explode("|", $value);
-            // echo $val[0].'<br>';
-            // echo $val[1].'<br>';
 
             echo "<option value='$value'>$val[0]%($val[1])</option>";
         }
@@ -92,7 +85,6 @@ function printStart($current, $pts, $in, $table)
 {
     include ("employee_config.php");
     include ("employer_config.php");
-    // echo "i is:".$i;
     if ($current == NULL) {
         if ($table == "employee")
             $start = $sta_ee;
@@ -103,10 +95,7 @@ function printStart($current, $pts, $in, $table)
         echo "<input type='hidden' name='i' value='$in' />";
         echo "<select name='select'>";
         foreach ($start as $value) {
-            // echo $value.'<br>';
             $val = explode("|", $value);
-            // echo $val[0].'<br>';
-            // echo $val[1].'<br>';
 
             echo "<option value='$value'>$val[0]($val[1])</option>";
         }
@@ -117,11 +106,10 @@ function printStart($current, $pts, $in, $table)
     }
 }
 
-function printMedical($current, $pts, $in,$table)
+function printMedical($current, $pts, $in, $table)
 {
     include ("employee_config.php");
     include ("employer_config.php");
-    // echo "i is:".$i;
     if ($current == NULL) {
         if ($table == "employee")
             $medical = $med_ee;
@@ -132,10 +120,7 @@ function printMedical($current, $pts, $in,$table)
         echo "<input type='hidden' name='i' value='$in' />";
         echo "<select name='select'>";
         foreach ($medical as $value) {
-            // echo $value.'<br>';
             $val = explode("|", $value);
-            // echo $val[0].'<br>';
-            // echo $val[1].'<br>';
 
             echo "<option value='$value'>$val[0]%($val[1])</option>";
         }
@@ -160,7 +145,6 @@ function getI($sal, $vac, $ann, $sta, $med)
     if ($med != NULL and $med > $i)
         $i = $med;
     ++ $i;
-    // echo "Value of i:".$i;
     return $i;
 }
 ?>

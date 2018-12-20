@@ -1,5 +1,8 @@
 <?php
-
+/*
+ * Handles cookie calls as well as mysql calls
+ * Checks that the ID is an integer and converts the table cookie value to a string
+ */
 function checkCookie($cookie_name)
 {
     if (! isset($_COOKIE[$cookie_name])) {
@@ -16,25 +19,21 @@ function createRow($kid, $table)
     $con = mysqli_connect($server, $serverlogin, $pswd, $dbname) or die("Connection fail");
     $query = "Insert into $dbname.$table (KID) values ($kid)";
     mysqli_query($con, $query) or die("Error in query: $query");
-    // echo "Done create";
 }
 
 function getRow($kid, $table, $employment)
 {
     include ("dbconfig.php");
-    // echo "in get<br>";
     $con = mysqli_connect($server, $serverlogin, $pswd, $dbname) or die("Connection fail");
     if ($employment == 1)
         $query = "Select MAX(employee_id) as id from $dbname.$table where KID=$kid";
     elseif ($employment == 2)
         $query = "Select MAX(employer_id) as id from $dbname.$table where KID=$kid";
-    // echo $query;
     $result = mysqli_query($con, $query);
     $emp_id = 0;
     while ($row = mysqli_fetch_assoc($result)) {
         $emp_id = $row['id'];
     }
-    // echo $emp_id;
     return $emp_id;
 }
 
@@ -56,8 +55,7 @@ function updateRow($partner, $id, $table)
             $query = "update $dbname.$table set employer_id=$partner where employee_id=$id";
         elseif ($table == "employer")
             $query = "update $dbname.$table set employee_id=$partner where employer_id=$id";
-        mysqli_query($con, $query) or die("Error in query: $query"); // Change error message
-                                                                     // echo "Done create";
+        mysqli_query($con, $query) or die("Error in query: $query"); 
     }
 }
 
@@ -77,7 +75,6 @@ function checkStatus($id, $table)
         }
         if ($status == NULL)
             return FALSE;
-        // elseif($staus!=NULL)
         else
             return TRUE;
     }
@@ -112,7 +109,6 @@ function updateRowForm($form, $i, $select, $id, $table)
         }
         $val = explode("|", $select);
         $query = "Update $dbname.$table set $col='$val[0]',$col_pts='$val[1]',$col_order=$i where $table_id=$id";
-        //echo $query;
         mysqli_query($con, $query) or die("Error in query: $query");
     }
 }
@@ -129,7 +125,6 @@ function getInfo($id, $table)
         $con = mysqli_connect($server, $serverlogin, $pswd, $dbname) or die("Connection fail");
         $query = "SELECT salary,sal_pts,sal_order,vacation,vac_pts,vac_order,annual_raise,ann_pts,ann_order,start_date,sta_pts,
          sta_order,medical,med_pts,med_order,$partner as partner FROM $dbname.$table where $table_id=$id";
-        // echo $query;
         $result = mysqli_query($con, $query);
         while ($row = mysqli_fetch_assoc($result)) {
             $return = $row['salary'] . "|" . $row['sal_pts'] . "|" . $row['sal_order'] . "|" . $row['vacation'] . "|" . $row['vac_pts'] . "|" . $row['vac_order'] . "|" . $row['annual_raise'] . "|" . $row['ann_pts'] . "|" . $row['ann_order'] . "|" . $row['start_date'] . "|" . $row['sta_pts'] . "|" . $row['sta_order'] . "|" . $row['medical'] . "|" . $row['med_pts'] . "|" . $row['med_order'] . "|" . $row['partner'];

@@ -2,6 +2,7 @@
 /*
  * Please choose values that will keep points as integers.
  * Formula is (Max-min)mod([Number of options "Steps"]-1)=0
+ * i while j increases to display the array in order of max->min with j being the index.
  */
 
 /*
@@ -22,7 +23,7 @@ for ($i = ($step - 1); $i >= 0; -- $i) {
 }
 
 /*
- * Generate vacation time
+ * Generate Vacation Time
  */
 
 $time = array(
@@ -44,7 +45,7 @@ for ($i = ($step - 1); $i >= 0; -- $i) {
 }
 
 /*
- * annual increase
+ * Generate Annual Increase
  */
 $step = 9;
 $min = 1;
@@ -60,7 +61,7 @@ for ($i = ($step - 1); $i >= 0; -- $i) {
     ++ $j;
 }
 /*
- * Start date
+ * Generate Start Date
  */
 $time = array(
     'May 1',
@@ -85,7 +86,7 @@ for ($i = ($step - 1); $i >= 0; -- $i) {
     ++ $j;
 }
 /*
- * Medical
+ * Generate Medical
  */
 $step = 7;
 $min = 40;

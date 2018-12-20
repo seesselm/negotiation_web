@@ -2,6 +2,7 @@
 /*
  * Please choose values that will keep points as integers.
  * Formula is (Max-min)mod([Number of options "Steps"]-1)=0
+ * i while j increases to display the array in order of max->min with j being the index.
  */
 
 /*
@@ -22,7 +23,7 @@ for ($i = ($step - 1); $i >= 0; -- $i) {
 }
 
 /*
- * Generate vacation time
+ * Generate Vacation Time
  */
 
 $time = array(
@@ -34,7 +35,7 @@ $time = array(
 );
 $step = count($time);
 $minpt = 0;
-$maxpt = 160;
+$maxpt = 320;
 $vac_er = array_fill(0, $step, $minpt);
 $incrementpt = ($maxpt - $minpt) / ($step - 1);
 $j = 0;
@@ -44,13 +45,13 @@ for ($i = ($step - 1); $i >= 0; -- $i) {
 }
 
 /*
- * annual increase
+ * Generate Annual Increase
  */
 $step = 9;
 $min = 1;
 $max = 5;
 $minpt = 0;
-$maxpt = 320;
+$maxpt = 160;
 $ann_er = array_fill(0, $step, $minpt);
 $increment = ($max - $min) / ($step - 1);
 $incrementpt = ($maxpt - $minpt) / ($step - 1);
@@ -60,7 +61,7 @@ for ($i = ($step - 1); $i >= 0; -- $i) {
     ++ $j;
 }
 /*
- * Start date
+ * Generate Start Date
  */
 $time = array(
     'May 1',
@@ -81,11 +82,11 @@ $sta_er = array_fill(0, $step, $minpt);
 $incrementpt = ($maxpt - $minpt) / ($step - 1);
 $j = 0;
 for ($i = ($step - 1); $i >= 0; -- $i) {
-    $sta_er[$j] = $time[$j] . '|' . ($minpt + ($incrementpt * $j));
+    $sta_er[$j] = $time[$j] . '|' . ($minpt + ($incrementpt * $i));
     ++ $j;
 }
 /*
- * Medical
+ * Generate Medical
  */
 $step = 7;
 $min = 40;

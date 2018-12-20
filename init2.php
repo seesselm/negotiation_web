@@ -1,4 +1,7 @@
 <?php
+/*
+ * 3rd setup: update row to pass to game.php
+ */
 define("IN_CODE", 1);
 include ("dbconfig.php");
 include ("game_file.php");

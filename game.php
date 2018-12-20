@@ -1,4 +1,7 @@
 <?php
+/*
+ * Interface for negotiation. 
+ */
 define("IN_CODE", 1);
 include ("dbconfig.php");
 include ("game_file.php");

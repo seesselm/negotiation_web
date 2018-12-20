@@ -1,4 +1,7 @@
 <?php
+/*
+ * 2nd setup. Asks for partner information to match later
+ */
 define("IN_CODE", 1);
 include ("dbconfig.php");
 include ("game_file.php");
